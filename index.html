@@ -7,7 +7,7 @@
   <meta name="description" content="Marupapoi · cinco meses juntos.">
   <title>Marupapoi</title>
   <style>
-    :root { color-scheme:dark; --ink:#f0e6ec; --muted:#a596a1; --rose:#c58ba0; --wine:#4b172c; --line:rgba(197,139,160,.25); --panel:rgba(21,14,22,.88); }
+    :root { color-scheme:dark; --ink:#f0e6ec; --muted:#a596a1; --rose:#c58ba0; --line:rgba(197,139,160,.25); --panel:rgba(21,14,22,.88); }
     * { box-sizing:border-box; }
     html { min-height:100%; scroll-behavior:smooth; }
     body { min-height:100vh; margin:0; color:var(--ink); background:radial-gradient(ellipse at 50% 5%,rgba(83,24,49,.33),transparent 36rem),repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0 1px,transparent 1px 5px),linear-gradient(180deg,#160d16 0%,#0d0a10 48%,#070609 100%); font-family:Georgia,'Times New Roman',serif; letter-spacing:.025em; overflow-x:hidden; transition:filter .5s,background .5s; }
@@ -25,8 +25,7 @@
     h1 span { color:var(--rose); font-style:italic; }
     .subtitle { margin:13px 0 0; color:var(--muted); font-size:12px; letter-spacing:.18em; text-transform:uppercase; }
     .counter { position:relative; margin:30px auto 0; padding:19px 13px; width:min(100%,520px); border:1px solid var(--line); background:linear-gradient(145deg,rgba(38,20,34,.94),rgba(12,10,15,.92)); box-shadow:0 12px 40px rgba(0,0,0,.4),inset 0 0 22px rgba(104,40,67,.08); }
-    .counter::before,.counter::after { position:absolute; color:#80445d; font-size:13px; content:'✦'; }
-    .counter::before { top:7px; left:9px; }.counter::after { right:9px; bottom:7px; }
+    .counter::before,.counter::after { position:absolute; color:#80445d; font-size:13px; content:'✦'; }.counter::before { top:7px; left:9px; }.counter::after { right:9px; bottom:7px; }
     .counter-label { color:var(--muted); font:9px Arial,sans-serif; letter-spacing:.2em; text-transform:uppercase; }
     .time-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:17px 5px; margin-top:17px; }
     .time-value { display:block; color:var(--rose); font-size:clamp(25px,7vw,36px); font-variant-numeric:tabular-nums; line-height:1; text-shadow:0 0 14px rgba(197,139,160,.18); }
@@ -41,22 +40,24 @@
     .heart { position:relative; display:block; width:100%; aspect-ratio:1/.92; padding:0; border:0; background:radial-gradient(circle at 35% 25%,#8d596e,#34202f 75%); cursor:pointer; filter:drop-shadow(0 6px 12px rgba(0,0,0,.48)); -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cpath d='M50 86 9 48C-7 32 5 5 26 5c11 0 19 6 24 16C55 11 63 5 74 5c21 0 33 27 17 43L50 86Z' fill='black'/%3E%3C/svg%3E") center/100% 100% no-repeat; mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cpath d='M50 86 9 48C-7 32 5 5 26 5c11 0 19 6 24 16C55 11 63 5 74 5c21 0 33 27 17 43L50 86Z' fill='black'/%3E%3C/svg%3E") center/100% 100% no-repeat; transition:transform .35s ease,filter .35s ease; }
     .heart::before { content:'†'; position:absolute; inset:0; display:grid; place-items:center; color:rgba(255,240,244,.9); font-size:clamp(32px,9vw,52px); text-shadow:0 2px 14px #100d10; transition:opacity .25s ease,transform .35s ease; }
     .heart::after { content:''; position:absolute; inset:0; background-image:var(--photo); background-position:center; background-size:cover; opacity:0; transform:scale(.78); transition:opacity .4s ease,transform .5s cubic-bezier(.2,.8,.2,1); }
-    .heart.open::before { opacity:0; transform:scale(.4) rotate(25deg); }
-    .heart.open::after { opacity:1; transform:scale(1); }
-    .heart.open { transform:scale(1.04); filter:drop-shadow(0 0 18px rgba(197,139,160,.4)); }
-    .heart:active { transform:scale(.93); }
+    .heart.open::before { opacity:0; transform:scale(.4) rotate(25deg); }.heart.open::after { opacity:1; transform:scale(1); }.heart.open { transform:scale(1.04); filter:drop-shadow(0 0 18px rgba(197,139,160,.4)); }.heart:active { transform:scale(.93); }
     .memory-name { margin-top:5px; color:#8f7e89; font:9px Arial,sans-serif; }
     .music-card { max-width:500px; margin:17px auto 0; padding:14px 16px; border:1px solid var(--line); background:var(--panel); text-align:left; box-shadow:inset 0 0 30px rgba(85,30,54,.08); }
-    .track { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 2px; border-bottom:1px solid rgba(197,139,160,.1); }
-    .track:last-child { border-bottom:0; }
-    .track-name { color:#e7dce1; font:12px/1.45 Arial,sans-serif; }.track-artist { display:block; color:#a99ba3; font-size:10px; }
-    .listen { flex:none; color:var(--rose); text-decoration:none; font:9px Arial,sans-serif; letter-spacing:.08em; }
-    .listen:hover { text-decoration:underline; }
+    .track { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 2px; border-bottom:1px solid rgba(197,139,160,.1); }.track:last-child { border-bottom:0; }
+    .track-name { color:#e7dce1; font:12px/1.45 Arial,sans-serif; }.track-artist { display:block; color:#a99ba3; font-size:10px; }.listen { flex:none; color:var(--rose); text-decoration:none; font:9px Arial,sans-serif; letter-spacing:.08em; }.listen:hover { text-decoration:underline; }
     .sigil-button { display:block; margin:25px auto 0; width:76px; height:76px; border:1px solid rgba(197,139,160,.38); border-radius:50%; color:var(--rose); background:radial-gradient(circle,#2b1724,#0d0a10 72%); box-shadow:0 0 20px rgba(124,50,82,.18); font-size:28px; cursor:pointer; transition:transform .45s,box-shadow .45s; }
-    .sigil-button.active { transform:rotate(180deg); box-shadow:0 0 35px rgba(197,139,160,.42); }
-    .sigil-message { min-height:18px; margin:10px 0 0; color:var(--muted); font:10px Arial,sans-serif; letter-spacing:.1em; }
-    .ending { margin-top:43px; padding-top:24px; border-top:1px solid var(--line); }
-    .ending .love-line { margin-top:0; }
+    .sigil-button.active { transform:rotate(180deg); box-shadow:0 0 35px rgba(197,139,160,.42); }.sigil-message { min-height:18px; margin:10px 0 0; color:var(--muted); font:10px Arial,sans-serif; letter-spacing:.1em; }
+    .game-panel { max-width:500px; margin:17px auto 0; padding:18px; border:1px solid var(--line); background:linear-gradient(145deg,rgba(38,20,34,.75),rgba(12,10,15,.9)); }
+    .game-status { min-height:18px; color:var(--muted); font:11px/1.6 Arial,sans-serif; }
+    .game-start { margin:12px auto 0; }
+    .game-board { position:relative; min-height:190px; margin-top:14px; border:1px dashed rgba(197,139,160,.22); background:radial-gradient(ellipse,rgba(75,23,44,.16),transparent 70%); overflow:hidden; }
+    .hidden-heart { position:absolute; width:42px; height:42px; display:grid; place-items:center; border:1px solid rgba(197,139,160,.4); border-radius:50%; color:#e0a6bc; background:rgba(27,14,25,.86); font-size:23px; cursor:pointer; opacity:.78; animation:heartPulse 1.8s ease-in-out infinite; box-shadow:0 0 13px rgba(125,43,78,.2); }
+    .hidden-heart.found { opacity:.22; animation:none; pointer-events:none; }
+    @keyframes heartPulse { 50% { transform:scale(1.12); box-shadow:0 0 20px rgba(197,139,160,.45); } }
+    .game-prize { display:none; margin:16px auto 0; padding:14px; border:1px solid rgba(197,139,160,.35); color:var(--rose); background:rgba(8,6,10,.65); font-size:21px; animation:prizeIn .6s ease both; }
+    .game-prize.show { display:block; }
+    @keyframes prizeIn { from { opacity:0; transform:translateY(8px) scale(.96); } to { opacity:1; transform:translateY(0) scale(1); } }
+    .ending { margin-top:43px; padding-top:24px; border-top:1px solid var(--line); }.ending .love-line { margin-top:0; }
     footer { margin-top:25px; color:#756975; text-align:center; font:8px Arial,sans-serif; letter-spacing:.19em; text-transform:uppercase; }
     .spark { position:fixed; z-index:10; pointer-events:none; color:#d5a1b4; font-size:17px; animation:spark 900ms ease-out forwards; }
     @keyframes spark { from { opacity:.9; transform:translate(-50%,-50%) scale(.6) rotate(0); } to { opacity:0; transform:translate(-50%,-85px) scale(1.4) rotate(70deg); } }
@@ -70,7 +71,7 @@
       <div class="eyebrow">Mara · bichito · amorchi</div>
       <div class="header-actions">
         <button class="small-button" id="eclipse" type="button" aria-pressed="false">☾ Eclipse</button>
-        <button class="sound-button" id="sound" type="button" aria-pressed="false">♫ Ambiente: off</button>
+        <button class="sound-button" id="sound" type="button" aria-pressed="false">♫ Música: off</button>
       </div>
     </header>
     <main>
@@ -88,6 +89,17 @@
           <div><span class="time-value" id="hours">00</span><span class="time-unit">horas</span></div>
           <div><span class="time-value" id="minutes">00</span><span class="time-unit">minutos</span></div>
           <div><span class="time-value" id="seconds">00</span><span class="time-unit">segundos</span></div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="game-title">
+        <h2 id="game-title">Los cinco corazones</h2>
+        <p class="section-intro">Hay cinco escondidos por la página. Encuéntralos para desbloquear la sorpresa.</p>
+        <div class="game-panel">
+          <div class="game-status" id="gameStatus" aria-live="polite">0 de 5 encontrados</div>
+          <button class="small-button game-start" id="startGame" type="button">Empezar búsqueda</button>
+          <div class="game-board" id="gameBoard" aria-label="Zona de búsqueda de corazones"></div>
+          <div class="game-prize" id="gamePrize" aria-live="polite">te amo bichito ♡</div>
         </div>
       </section>
 
@@ -127,13 +139,14 @@
           <div class="track"><div class="track-name">Right Here in My Arms<span class="track-artist">HIM</span></div><a class="listen" href="https://open.spotify.com/search/HIM%20Right%20Here%20in%20My%20Arms" target="_blank" rel="noopener noreferrer">ESCUCHAR ↗</a></div>
         </div>
       </section>
-
       <button class="sigil-button" id="sigil" type="button" aria-label="Activar el sigilo" aria-pressed="false">☥</button>
       <p class="sigil-message" id="sigilMessage" aria-live="polite"></p>
       <div class="ending"><div class="love-line">t adoro amorchi</div></div>
     </main>
     <footer>06 · 06 · 2026</footer>
   </div>
+
+  <audio id="backgroundSong" src="song1.mp3" loop preload="none"></audio>
   <script>
     const startDate = new Date(2026,5,6,0,0,0);
     const pad = (value) => String(value).padStart(2,'0');
@@ -176,35 +189,51 @@
       if (active) for (let i=0;i<9;i++) window.setTimeout(() => makeSpark(innerWidth*(.2+Math.random()*.6),innerHeight*(.25+Math.random()*.5)),i*75);
     });
 
+    const gameBoard=document.getElementById('gameBoard');
+    const gameStatus=document.getElementById('gameStatus');
+    const gamePrize=document.getElementById('gamePrize');
+    const heartPositions=[{x:8,y:12},{x:69,y:10},{x:35,y:35},{x:78,y:52},{x:18,y:67}];
+    let foundHearts=0;
+    function startHeartHunt() {
+      foundHearts=0; gamePrize.classList.remove('show'); gameBoard.replaceChildren();
+      gameStatus.textContent='0 de 5 encontrados';
+      heartPositions.forEach((position,index) => {
+        const heart=document.createElement('button'); heart.type='button'; heart.className='hidden-heart'; heart.textContent='♡';
+        heart.setAttribute('aria-label',`Encontrar corazón ${index+1}`);
+        heart.style.left=`${position.x}%`; heart.style.top=`${position.y}%`;
+        heart.addEventListener('click',() => {
+          if (heart.classList.contains('found')) return;
+          heart.classList.add('found'); heart.textContent='♥'; foundHearts++;
+          gameStatus.textContent=`${foundHearts} de 5 encontrados`;
+          makeSpark(heart.getBoundingClientRect().left+20,heart.getBoundingClientRect().top+20);
+          if (foundHearts===5) { gameStatus.textContent='5 de 5 encontrados'; gamePrize.classList.add('show'); }
+        });
+        gameBoard.append(heart);
+      });
+    }
+    document.getElementById('startGame').addEventListener('click',startHeartHunt);
+
     function makeSpark(x,y) {
-      const spark = document.createElement('span'); spark.className='spark'; spark.textContent=['✦','†','♡'][Math.floor(Math.random()*3)];
+      const spark=document.createElement('span'); spark.className='spark'; spark.textContent=['✦','†','♡'][Math.floor(Math.random()*3)];
       spark.style.left=`${x}px`; spark.style.top=`${y}px`; document.body.append(spark); window.setTimeout(() => spark.remove(),950);
     }
-    document.addEventListener('pointerdown',(event) => {
-      if (event.target.closest('button,a')) return;
-      makeSpark(event.clientX,event.clientY);
-    });
+    document.addEventListener('pointerdown',(event) => { if (!event.target.closest('button,a')) makeSpark(event.clientX,event.clientY); });
 
-    let audioContext; let oscillators=[]; let masterGain;
+    const backgroundSong=document.getElementById('backgroundSong');
     const soundButton=document.getElementById('sound');
-    function startAmbient() {
-      const AudioContext=window.AudioContext||window.webkitAudioContext;
-      if (!AudioContext) { soundButton.textContent='Audio no disponible'; return false; }
-      audioContext=new AudioContext(); masterGain=audioContext.createGain();
-      masterGain.gain.setValueAtTime(0,audioContext.currentTime); masterGain.gain.linearRampToValueAtTime(.035,audioContext.currentTime+2.5); masterGain.connect(audioContext.destination);
-      [110,164.81,220].forEach((frequency,index) => { const oscillator=audioContext.createOscillator(); const tone=audioContext.createGain(); oscillator.type=index===1?'sine':'triangle'; oscillator.frequency.value=frequency; tone.gain.value=index===0?.42:.2; oscillator.connect(tone); tone.connect(masterGain); oscillator.start(); oscillators.push(oscillator); });
-      return true;
-    }
-    function stopAmbient() {
-      if (!audioContext||!masterGain) return;
-      masterGain.gain.cancelScheduledValues(audioContext.currentTime); masterGain.gain.setTargetAtTime(0,audioContext.currentTime,.35);
-      window.setTimeout(() => { oscillators.forEach((oscillator) => { try { oscillator.stop(); } catch (_) {} }); oscillators=[]; audioContext.close(); audioContext=null; masterGain=null; },1200);
-    }
     soundButton.addEventListener('click',async () => {
-      const isOn=soundButton.getAttribute('aria-pressed')==='true';
-      if (isOn) { stopAmbient(); soundButton.setAttribute('aria-pressed','false'); soundButton.textContent='♫ Ambiente: off'; }
-      else if (startAmbient()) { if (audioContext.state==='suspended') await audioContext.resume(); soundButton.setAttribute('aria-pressed','true'); soundButton.textContent='♫ Ambiente: on'; }
+      if (backgroundSong.paused) {
+        try {
+          await backgroundSong.play();
+          soundButton.setAttribute('aria-pressed','true'); soundButton.textContent='♫ Música: on';
+        } catch (_) {
+          soundButton.textContent='Sube song1.mp3';
+        }
+      } else {
+        backgroundSong.pause(); soundButton.setAttribute('aria-pressed','false'); soundButton.textContent='♫ Música: off';
+      }
     });
+    backgroundSong.addEventListener('ended',() => { soundButton.setAttribute('aria-pressed','false'); soundButton.textContent='♫ Música: off'; });
   </script>
 </body>
 </html>
