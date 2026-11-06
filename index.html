@@ -136,7 +136,7 @@
           <div class="track"><div class="track-name">Change (In the House of Flies)<span class="track-artist">Deftones</span></div><a class="listen" href="https://open.spotify.com/search/Deftones%20Change%20In%20the%20House%20of%20Flies" target="_blank" rel="noopener noreferrer">ESCUCHAR ↗</a></div>
           <div class="track"><div class="track-name">Join Me in Death<span class="track-artist">HIM</span></div><a class="listen" href="https://open.spotify.com/search/HIM%20Join%20Me%20in%20Death" target="_blank" rel="noopener noreferrer">ESCUCHAR ↗</a></div>
           <div class="track"><div class="track-name">The Funeral of Hearts<span class="track-artist">HIM</span></div><a class="listen" href="https://open.spotify.com/search/HIM%20The%20Funeral%20of%20Hearts" target="_blank" rel="noopener noreferrer">ESCUCHAR ↗</a></div>
-          <div class="track"><div class="track-name">Right Here in My Arms<span class="track-artist">HIM</span></div><a class="listen" href="https://open.spotify.com/search/HIM%20Right%20Here%20in%20My%20Arms" target="_blank" rel="noopener noreferrer">ESCUCHAR ↗</a></div>
+          <div class="track"><div class="track-name">Tarea Fina<span class="track-artist">Patricio Rey y sus Redonditos de Ricota</span></div><a class="listen" href="https://open.spotify.com/search/Patricio%20Rey%20Tarea%20Fina" target="_blank" rel="noopener noreferrer">ESCUCHAR ↗</a></div>
         </div>
       </section>
       <button class="sigil-button" id="sigil" type="button" aria-label="Activar el sigilo" aria-pressed="false">☥</button>
@@ -146,7 +146,7 @@
     <footer>06 · 06 · 2026</footer>
   </div>
 
-  <audio id="backgroundSong" src="song1.mp3" loop preload="none"></audio>
+  <audio id="backgroundSong" src="Patricio%20Rey%20y%20sus%20Redonditos%20de%20Ricota%20Tarea%20Fina%20%28Audio%20Oficial%29.m4a" loop preload="none"></audio>
   <script>
     const startDate = new Date(2026,5,6,0,0,0);
     const pad = (value) => String(value).padStart(2,'0');
@@ -227,7 +227,7 @@
           await backgroundSong.play();
           soundButton.setAttribute('aria-pressed','true'); soundButton.textContent='♫ Música: on';
         } catch (_) {
-          soundButton.textContent='Sube song1.mp3';
+          soundButton.textContent='♫ canción no lista';
         }
       } else {
         backgroundSong.pause(); soundButton.setAttribute('aria-pressed','false'); soundButton.textContent='♫ Música: off';
