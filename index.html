@@ -13,7 +13,7 @@
     body { min-height:100vh; margin:0; color:var(--ink); background:radial-gradient(ellipse at 50% 5%,rgba(83,24,49,.33),transparent 36rem),repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0 1px,transparent 1px 5px),linear-gradient(180deg,#160d16 0%,#0d0a10 48%,#070609 100%); font-family:Georgia,'Times New Roman',serif; letter-spacing:.025em; overflow-x:hidden; transition:filter .5s,background .5s; }
     body.eclipse { filter:contrast(1.13) saturate(.75); background:radial-gradient(ellipse at 50% 5%,rgba(38,20,45,.4),transparent 36rem),linear-gradient(180deg,#09080d,#040406 70%); }
     body::before { position:fixed; inset:0; z-index:-1; content:''; pointer-events:none; opacity:.13; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E"); }
-    .page { width:min(100% - 34px,760px); margin:0 auto; padding:22px 0 42px; }
+    .page { position:relative; width:min(100% - 34px,760px); margin:0 auto; padding:22px 0 42px; }
     header { display:flex; justify-content:space-between; align-items:center; gap:9px; }
     .eyebrow { color:var(--muted); font:9px/1.5 Arial,sans-serif; letter-spacing:.24em; text-transform:uppercase; }
     .header-actions { display:flex; gap:7px; }
@@ -47,15 +47,16 @@
     .track-name { color:#e7dce1; font:12px/1.45 Arial,sans-serif; }.track-artist { display:block; color:#a99ba3; font-size:10px; }.listen { flex:none; color:var(--rose); text-decoration:none; font:9px Arial,sans-serif; letter-spacing:.08em; }.listen:hover { text-decoration:underline; }
     .sigil-button { display:block; margin:25px auto 0; width:76px; height:76px; border:1px solid rgba(197,139,160,.38); border-radius:50%; color:var(--rose); background:radial-gradient(circle,#2b1724,#0d0a10 72%); box-shadow:0 0 20px rgba(124,50,82,.18); font-size:28px; cursor:pointer; transition:transform .45s,box-shadow .45s; }
     .sigil-button.active { transform:rotate(180deg); box-shadow:0 0 35px rgba(197,139,160,.42); }.sigil-message { min-height:18px; margin:10px 0 0; color:var(--muted); font:10px Arial,sans-serif; letter-spacing:.1em; }
-    .game-panel { max-width:500px; margin:17px auto 0; padding:18px; border:1px solid var(--line); background:linear-gradient(145deg,rgba(38,20,34,.75),rgba(12,10,15,.9)); }
+    .game-panel { max-width:500px; margin:17px auto 0; padding:16px; border:1px solid var(--line); background:linear-gradient(145deg,rgba(38,20,34,.75),rgba(12,10,15,.9)); }
     .game-status { min-height:18px; color:var(--muted); font:11px/1.6 Arial,sans-serif; }
-    .game-start { margin:12px auto 0; }
-    .game-board { position:relative; min-height:190px; margin-top:14px; border:1px dashed rgba(197,139,160,.22); background:radial-gradient(ellipse,rgba(75,23,44,.16),transparent 70%); overflow:hidden; }
-    .hidden-heart { position:absolute; width:42px; height:42px; display:grid; place-items:center; border:1px solid rgba(197,139,160,.4); border-radius:50%; color:#e0a6bc; background:rgba(27,14,25,.86); font-size:23px; cursor:pointer; opacity:.78; animation:heartPulse 1.8s ease-in-out infinite; box-shadow:0 0 13px rgba(125,43,78,.2); }
+    .game-start { margin:10px auto 0; }
+    .game-prize { display:none; margin:15px auto 0; color:var(--rose); font-size:23px; letter-spacing:.08em; }
+    .game-prize.show { display:block; animation:prizeIn .6s ease both; }
+    .game-followup { display:none; margin:11px auto 0; color:var(--ink); font-size:18px; animation:prizeIn .6s ease both; }
+    .game-followup.show { display:block; }
+    .hidden-heart { position:absolute; z-index:5; width:42px; height:42px; display:grid; place-items:center; border:1px solid rgba(197,139,160,.4); border-radius:50%; color:#e0a6bc; background:rgba(27,14,25,.92); font-size:23px; cursor:pointer; opacity:.82; animation:heartPulse 1.8s ease-in-out infinite; box-shadow:0 0 13px rgba(125,43,78,.28); touch-action:manipulation; }
     .hidden-heart.found { opacity:.22; animation:none; pointer-events:none; }
     @keyframes heartPulse { 50% { transform:scale(1.12); box-shadow:0 0 20px rgba(197,139,160,.45); } }
-    .game-prize { display:none; margin:16px auto 0; padding:14px; border:1px solid rgba(197,139,160,.35); color:var(--rose); background:rgba(8,6,10,.65); font-size:21px; animation:prizeIn .6s ease both; }
-    .game-prize.show { display:block; }
     @keyframes prizeIn { from { opacity:0; transform:translateY(8px) scale(.96); } to { opacity:1; transform:translateY(0) scale(1); } }
     .ending { margin-top:43px; padding-top:24px; border-top:1px solid var(--line); }.ending .love-line { margin-top:0; }
     footer { margin-top:25px; color:#756975; text-align:center; font:8px Arial,sans-serif; letter-spacing:.19em; text-transform:uppercase; }
@@ -66,7 +67,7 @@
   </style>
 </head>
 <body>
-  <div class="page">
+  <div class="page" id="page">
     <header>
       <div class="eyebrow">Mara · bichito · amorchi</div>
       <div class="header-actions">
@@ -94,12 +95,12 @@
 
       <section class="section" aria-labelledby="game-title">
         <h2 id="game-title">Los cinco corazones</h2>
-        <p class="section-intro">Hay cinco escondidos por la página. Encuéntralos para desbloquear la sorpresa.</p>
+        <p class="section-intro">Hay cinco escondidos por toda la página. Encuéntralos para desbloquear la sorpresa.</p>
         <div class="game-panel">
           <div class="game-status" id="gameStatus" aria-live="polite">0 de 5 encontrados</div>
           <button class="small-button game-start" id="startGame" type="button">Empezar búsqueda</button>
-          <div class="game-board" id="gameBoard" aria-label="Zona de búsqueda de corazones"></div>
-          <div class="game-prize" id="gamePrize" aria-live="polite">te amo bichito ♡</div>
+          <div class="game-prize" id="gamePrize" aria-live="polite">pilla</div>
+          <div class="game-followup" id="gameFollowup" aria-live="polite">mentira t amo jeje</div>
         </div>
       </section>
 
@@ -189,27 +190,44 @@
       if (active) for (let i=0;i<9;i++) window.setTimeout(() => makeSpark(innerWidth*(.2+Math.random()*.6),innerHeight*(.25+Math.random()*.5)),i*75);
     });
 
-    const gameBoard=document.getElementById('gameBoard');
+    const page=document.getElementById('page');
     const gameStatus=document.getElementById('gameStatus');
     const gamePrize=document.getElementById('gamePrize');
-    const heartPositions=[{x:8,y:12},{x:69,y:10},{x:35,y:35},{x:78,y:52},{x:18,y:67}];
+    const gameFollowup=document.getElementById('gameFollowup');
     let foundHearts=0;
+    let followupTimer;
     function startHeartHunt() {
-      foundHearts=0; gamePrize.classList.remove('show'); gameBoard.replaceChildren();
+      document.querySelectorAll('.hidden-heart').forEach((heart) => heart.remove());
+      window.clearTimeout(followupTimer);
+      foundHearts=0;
+      gamePrize.classList.remove('show');
+      gameFollowup.classList.remove('show');
       gameStatus.textContent='0 de 5 encontrados';
-      heartPositions.forEach((position,index) => {
-        const heart=document.createElement('button'); heart.type='button'; heart.className='hidden-heart'; heart.textContent='♡';
+      const pageWidth=page.clientWidth;
+      const pageHeight=page.scrollHeight;
+      const edge=44;
+      for (let index=0;index<5;index++) {
+        const heart=document.createElement('button');
+        heart.type='button'; heart.className='hidden-heart'; heart.textContent='♡';
         heart.setAttribute('aria-label',`Encontrar corazón ${index+1}`);
-        heart.style.left=`${position.x}%`; heart.style.top=`${position.y}%`;
+        const bandHeight=pageHeight/5;
+        const top=bandHeight*index+Math.random()*Math.max(1,bandHeight-edge);
+        const left=Math.random()*Math.max(1,pageWidth-edge);
+        heart.style.top=`${Math.max(0,Math.min(top,pageHeight-edge))}px`;
+        heart.style.left=`${left}px`;
         heart.addEventListener('click',() => {
           if (heart.classList.contains('found')) return;
           heart.classList.add('found'); heart.textContent='♥'; foundHearts++;
           gameStatus.textContent=`${foundHearts} de 5 encontrados`;
-          makeSpark(heart.getBoundingClientRect().left+20,heart.getBoundingClientRect().top+20);
-          if (foundHearts===5) { gameStatus.textContent='5 de 5 encontrados'; gamePrize.classList.add('show'); }
+          const rect=heart.getBoundingClientRect(); makeSpark(rect.left+rect.width/2,rect.top+rect.height/2);
+          if (foundHearts===5) {
+            gameStatus.textContent='5 de 5 encontrados';
+            gamePrize.classList.add('show');
+            followupTimer=window.setTimeout(() => gameFollowup.classList.add('show'),5000);
+          }
         });
-        gameBoard.append(heart);
-      });
+        page.append(heart);
+      }
     }
     document.getElementById('startGame').addEventListener('click',startHeartHunt);
 
